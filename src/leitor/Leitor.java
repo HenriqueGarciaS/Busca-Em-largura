@@ -29,7 +29,7 @@ public class Leitor {
         return this.textoLido;
     }
 
-    public String[] transferirLeitura() throws Exception {
+    public String[] transferirLeituraCompleta() throws Exception {
         try {
            linha = leitor.readLine();
            texto = new String();
@@ -45,6 +45,23 @@ public class Leitor {
             throw new Exception("erro ao transferir texto");
         }
 
+    }
+
+    public String[] transferirLeitura() throws Exception{
+        try{
+            linha = leitor.readLine();
+            if(linha != null) {
+                textoLido = linha.split(",|;");
+                return textoLido;
+            }
+            else{
+                textoLido = null;
+            return  textoLido;
+            }
+        }
+        catch(Exception erro){
+            throw new Exception("erro ao transferir texto");
+        }
     }
 
 

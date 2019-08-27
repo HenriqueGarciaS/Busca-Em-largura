@@ -36,17 +36,13 @@ public class No {
         return this.cidade;
     }
 
-    public String getCidadedoNo(){
-        return conexoes.get(0).getCidadedoNo();
+    public String getCidades(){
+        String retorno = this.cidade;
+        for(int i = 0; i<conexoes.size();i++)
+            retorno+= " "+conexoes.get(i).getCidades();
+        return  retorno;
     }
 
-    public int getSize(){
-        return conexoes.size();
-    }
-
-    public int getSizedoNo(){
-        return this.conexoes.get(1).getSize();
-    }
 
 
 }

@@ -12,14 +12,12 @@ public class Buscador {
             leitor = new Leitor("C:\\Users\\Usuario\\IdeaProjects\\Novo Busca em largura\\src\\texto.txt");
             leitura = leitor.transferirLeitura();
             raiz = new No(leitura[0]);
-            for(int i = 1 ; i<leitura.length; i++) {
-                raiz.insereNo(leitura[i-1],leitura[i]);
-                System.out.println("inseriu no");
+            while(leitura!=null){
+                for(int i=0;i<leitura.length-1;i++)
+                raiz.insereNo(leitura[i],leitura[i+1]);
+                leitura = leitor.transferirLeitura();
             }
-            System.out.println(raiz.getSize());
-            System.out.println(raiz.getSizedoNo());
-
-
+            System.out.println(raiz.getCidades());
     }
 
 
