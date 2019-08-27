@@ -12,22 +12,23 @@ public class No {
         this.conexoes = new ArrayList<>();
     }
 
-    public void insereNo(String estaCidade, String conexao) throws Exception{
+    public boolean insereNo(String estaCidade, String conexao) throws Exception{
         try{
-            if(cidade.equals(estaCidade)){
-                No novo = new No(conexao);
-                this.conexoes.add(novo);
-            }
-            else{
-                int i = 0;
-                while(!conexoes.get(i).getCidade().equals(estaCidade))
-                    i++;
-                conexoes.get(i).insereNo(estaCidade,conexao);
-            }
+             if(this.cidade.equals(estaCidade)){
+                 No novo = new No(conexao);
+                 this.conexoes.add(novo);
+                 return true;
+             }
+             else{
+                 for(int i = 0; i<conexoes.size(); i++)
+                     this.conexoes.get(i).insereNo(estaCidade,conexao);
+                 return true;
+             }
+
         }
         catch(Exception erro)
         {
-            throw new Exception("erro a inserir no");
+            throw new Exception("erro a inserir novo no");
         }
 
     }
@@ -43,6 +44,12 @@ public class No {
         return  retorno;
     }
 
+    public boolean estaEmConexoes(String cidade){
+        for(int i = 0 ; i<conexoes.size(); i++)
+            if(conexoes.get(i).equals(cidade))
+                return true;
+            return false;
+    }
 
 
 }

@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0560ddda-817b-495e-93d4-36e87d788696" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Novo Busca em largura/arvore/No.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Novo Busca em largura/arvore/No.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Novo Busca em largura/buscador/Buscador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Novo Busca em largura/buscador/Buscador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Novo Busca em largura/leitor/Leitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Novo Busca em largura/leitor/Leitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/arvore/No.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/arvore/No.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/buscador/Buscador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/buscador/Buscador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/leitor/Leitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/leitor/Leitor.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +22,32 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/dev" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1PyXouzmJC8wflAJWBGuRV6BfTj" />
@@ -84,7 +107,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
