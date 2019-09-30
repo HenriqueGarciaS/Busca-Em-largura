@@ -10,22 +10,26 @@ public class Buscador {
         Leitor leitor;
         String [] leitura;
         No raiz;
-        ArrayList<String> busca = new ArrayList<String>();
+        ArrayList<String> largura = new ArrayList<String>();
+        ArrayList <String> profundidade = new ArrayList<String>();
             leitor = new Leitor("C:\\Users\\Usuario\\IdeaProjects\\Novo Busca em largura\\src\\texto.txt");
             leitura = leitor.transferirLeitura();
-            raiz = new No(leitura[0]);
+            int custoInicial = Integer.parseInt(leitura[2]);
+            raiz = new No(leitura[0],custoInicial);
             while(leitura!=null){
                 for(int i = 0 ; i < leitura.length-1 ; i++) {
-                    raiz.insereNo(leitura[i], leitura[i + 1]);
-                    raiz.insereNo(leitura[i+1], leitura[i]);
+                    int custo = Integer.parseInt(leitura[2]);
+                    raiz.insereNo(leitura[i], leitura[i + 1],custo);
+                    raiz.insereNo(leitura[i+1], leitura[i],custo);
                 }
                     leitura = leitor.transferirLeitura();
             }
-           raiz.buscaEmLargura(busca,"Cidade 1");
-            for(int i = 0; i < busca.size(); i++)
-                System.out.println(busca.get(i));
-
-
+            raiz.getCidadesLargura(largura,"G");
+            for(int i = 0 ; i < largura.size(); i++ )
+               System.out.println(largura.get(i));
+            //raiz.getCidadesProfundidade(profundidade,"J");
+            //for(int i = 0; i < profundidade.size(); i++)
+              //  System.out.println(profundidade.get(i));
     }
 }
 
