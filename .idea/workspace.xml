@@ -50,6 +50,9 @@
     </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/arvore/No.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectId" id="1PyXouzmJC8wflAJWBGuRV6BfTj" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />

@@ -5,13 +5,11 @@ import java.util.ArrayList;
 public class No {
 
     private String cidade;
-    ArrayList<No> conexoes;
-    ArrayList<String> fila;
+    private ArrayList<No> conexoes;
 
     public No(String nome){
         this.cidade = nome;
         this.conexoes = new ArrayList<No>();
-        fila = new ArrayList<String>();
     }
 
     public boolean insereNo(String estaCidade, String conexao) throws Exception{
@@ -39,12 +37,16 @@ public class No {
         return this.cidade;
     }
 
+
+
     public String getCidades(){
         String retorno = this.cidade;
         for(int i = 0; i<conexoes.size();i++)
             retorno+= " "+conexoes.get(i).getCidades();
         return  retorno;
     }
+
+
 
     private boolean estaEmConexoes(String cidade){
         for(int i = 0 ; i<conexoes.size(); i++)
@@ -53,21 +55,26 @@ public class No {
             return false;
     }
 
-    /*public ArrayList<String> busca(String destino){
-        ArrayList<String> ret = new ArrayList<String>();
-        int i = 0;
-        if(this.cidade.equals(destino)){
-            ret.add(this.cidade);
-            return ret;
+    public int buscaEmLargura(ArrayList<String> busca, String destino){
+        if(busca.isEmpty() == true) {
+            busca.add(this.cidade);
+            for(int i = 0; i < this.conexoes.size(); i++)
+                busca.add(this.conexoes.get(i).getCidade());
+            for(int i = 0; i < busca.size(); i++)
+                if(busca.get(i).equals(destino))
+                    return 1;
+                for(int i = 0; i< busca.size(); i++)
+                    return this.conexoes.get(i).buscaEmLargura(busca, destino);
         }
-        ret.add(this.cidade);
-        while(!this.conexoes.get(i).getCidade().equals(destino)){
-            ret.add(this.conexoes.get(i).getCidade());
-            i++;
+        if(estaEmConexoes(destino) == true) {
+            busca.add(this.cidade);
+            for (int i = 0; i < this.conexoes.size(); i++)
+                for(int j = 0; j < busca.size(); j++)
+                    if(!busca.get(j).equals(this.conexoes.get(i).getCidade()))
+                        busca.add(this.conexoes.get(i).getCidade());
+                    return 1;
         }
-        return ret;*/
-
-
+        return 1;
     }
 
 }
