@@ -1,6 +1,8 @@
 package arvore;
 
 
+import resultado.Resultado;
+
 import java.util.ArrayList;
 
 public class No {
@@ -40,6 +42,13 @@ public class No {
         return this.cidade;
     }
 
+    public String getCustos(){
+        String ret =""+ this.custo;
+        for(int i = 0 ; i < this.conexoes.size(); i++)
+        ret +=" "+ this.conexoes.get(i).getCustos();
+        return ret;
+    }
+
 
 
     public String getCidades(){
@@ -49,53 +58,62 @@ public class No {
         return  retorno;
     }
 
-    public void getCidadesLargura(ArrayList<String> largura,String destino)
+    public Resultado criaResultado(){
+        Resultado novo =  new Resultado(this.cidade,this.custo);
+        return novo;
+    }
+
+    public void getCidadesLargura(ArrayList<Resultado> largura, String destino)
     {
         if(this.estaEmConexoes(destino)){
-            largura.add(this.getCidade());
+            largura.add(this.criaResultado());
             for(int i = 0; i < this.conexoes.size(); i++)
-                largura.add(this.conexoes.get(i).getCidade());
+                largura.add(this.conexoes.get(i).criaResultado());
         }
+        else{
+            if(!largura.contains(this.criaResultado()))
+                largura.add(this.criaResultado());
+            for(int i = 0; i < this.conexoes.size(); i++)
+               if(!largura.contains(this.conexoes.get(i).criaResultado()))
+                   largura.add(this.conexoes.get(i).criaResultado());
+               for(int i = 0; i < this.conexoes.size(); i++)
+               this.conexoes.get(i).getCidadesLargura(largura,destino);
+        }
+       /*
         else {
             if(!largura.isEmpty()) {
-                if (!largura.contains(this.getCidade()))
-                    largura.add(this.getCidade());
+                if (!largura.contains(this.criaResultado()))
+                    largura.add(this.criaResultado());
                 for(int i = 0 ; i < this.conexoes.size(); i++)
-                    if(!largura.contains(this.conexoes.get(i).getCidade()))
-                        largura.add(this.conexoes.get(i).getCidade());
+                    if(!largura.contains(this.conexoes.get(i).criaResultado()))
+                        largura.add(this.conexoes.get(i).criaResultado());
                     for(int i = 0 ; i < this.conexoes.size(); i++)
                         this.conexoes.get(i).getCidadesLargura(largura, destino);
             }
             else {
-                largura.add(this.getCidade());
+                largura.add(this.criaResultado());
                 for (int i = 0; i < this.conexoes.size(); i++)
-                    largura.add(this.conexoes.get(i).getCidade());
+                    largura.add(this.conexoes.get(i).criaResultado());
                 for (int i = 0; i < this.conexoes.size(); i++)
                     this.conexoes.get(i).getCidadesLargura(largura, destino);
             }
-        }
+        }*/
     }
 
-    public void getCidadesProfundidade(ArrayList<String> profundidade, String destino) {
-         if(this.estaEmConexoes(destino)){
-             profundidade.add(this.getCidade());
+    public void getCidadesProfundidade(ArrayList<Resultado> profundidade, String destino) {
+        if(this.estaEmConexoes(destino)){
+             profundidade.add(this.criaResultado());
              int i = 0;
              while(!this.conexoes.get(i).getCidade().equals(destino))
                  i++;
-             profundidade.add(this.conexoes.get(i).getCidade());
+             profundidade.add(this.conexoes.get(i).criaResultado());
          }
          else{
-             if(!profundidade.isEmpty()) {
-                 if (!profundidade.contains(this.cidade))
-                     profundidade.add(this.cidade);
+
+                 if (!profundidade.contains(this.criaResultado()))
+                     profundidade.add(this.criaResultado());
                  for (int i = 0; i < this.conexoes.size(); i++)
                      this.conexoes.get(i).getCidadesProfundidade(profundidade, destino);
-             }
-             else{
-                 profundidade.add(this.getCidade());
-                 for(int i = 0; i < this.conexoes.size(); i++)
-                     this.conexoes.get(i).getCidadesProfundidade(profundidade, destino);
-             }
 
          }
 

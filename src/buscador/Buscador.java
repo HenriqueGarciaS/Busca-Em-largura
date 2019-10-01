@@ -3,6 +3,7 @@ package buscador;
 import arvore.No;
 import leitor.Leitor;
 import java.util.ArrayList;
+import resultado.Resultado;
 
 public class Buscador {
 
@@ -10,27 +11,33 @@ public class Buscador {
         Leitor leitor;
         String [] leitura;
         No raiz;
-        ArrayList<String> largura = new ArrayList<String>();
-        ArrayList <String> profundidade = new ArrayList<String>();
+        ArrayList<Resultado> largura = new ArrayList<Resultado>();
+        ArrayList <Resultado> profundidade = new ArrayList<Resultado>();
             leitor = new Leitor("C:\\Users\\Usuario\\IdeaProjects\\Novo Busca em largura\\src\\texto.txt");
             leitura = leitor.transferirLeitura();
-            int custoInicial = Integer.parseInt(leitura[2]);
-            raiz = new No(leitura[0],custoInicial);
+            System.out.println(leitura.length);
+            raiz = new No(leitura[0],0);
             while(leitura!=null){
-                for(int i = 0 ; i < leitura.length-1 ; i++) {
-                    int custo = Integer.parseInt(leitura[2]);
-                    raiz.insereNo(leitura[i], leitura[i + 1],custo);
-                    raiz.insereNo(leitura[i+1], leitura[i],custo);
-                }
+                int custo = Integer.parseInt(leitura[2]);
+                raiz.insereNo(leitura[0],leitura[1],custo);
+                raiz.insereNo(leitura[1],leitura[0],custo);
                     leitura = leitor.transferirLeitura();
             }
-            raiz.getCidadesLargura(largura,"G");
-            for(int i = 0 ; i < largura.size(); i++ )
-               System.out.println(largura.get(i));
-            //raiz.getCidadesProfundidade(profundidade,"J");
-            //for(int i = 0; i < profundidade.size(); i++)
-              //  System.out.println(profundidade.get(i));
-    }
+            raiz.getCidadesLargura(largura,"F");
+            raiz.getCidadesProfundidade(profundidade,"F");
+           System.out.println(extraiResultado(largura));
+           System.out.println(extraiResultado(profundidade));
+   }
+
+   public static String extraiResultado(ArrayList<Resultado> lista){
+     String ret = new String();
+     int custo = 0;
+     for(int i = 0; i < lista.size(); i++){
+     custo = custo + lista.get(i).getCusto();
+     ret += lista.get(i).getCidade()+" "+custo+" ";
+     }
+     return ret;
+   }
 }
 
 
