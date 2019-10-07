@@ -3,7 +3,6 @@ package buscador;
 import arvore.No;
 import leitor.Leitor;
 import java.util.ArrayList;
-import resultado.Resultado;
 
 public class Buscador {
 
@@ -11,35 +10,43 @@ public class Buscador {
         Leitor leitor;
         String [] leitura;
         No raiz;
-        ArrayList<Resultado> largura = new ArrayList<Resultado>();
-        ArrayList <Resultado> profundidade = new ArrayList<Resultado>();
-            leitor = new Leitor("C:\\Users\\Usuario\\IdeaProjects\\Novo Busca em largura\\src\\texto.txt");
+        int calculo1 = 0,calculo2 = 0, calculo3 = 0;
+        ArrayList<String> largura = new ArrayList<String>();
+        ArrayList<String> profundidade = new ArrayList<String>();
+        ArrayList<String> abertura = new ArrayList<String>();
+        ArrayList<String> uniforme = new ArrayList<String>();
+        leitor = new Leitor("C:\\Users\\Usuario\\IdeaProjects\\Novo Busca em largura\\src\\texto.txt");
+        leitura = leitor.transferirLeitura();
+        raiz = new No(leitura[0],0);
+        while(leitura!=null && leitura.length!= 1){
+            int custo = Integer.parseInt(leitura[2]);
+            raiz.insereNo(leitura[0],leitura[1],custo);
+            raiz.insereNo(leitura[1],leitura[0],custo);
             leitura = leitor.transferirLeitura();
-            System.out.println(leitura.length);
-            raiz = new No(leitura[0],0);
-            while(leitura!=null){
-                int custo = Integer.parseInt(leitura[2]);
-                raiz.insereNo(leitura[0],leitura[1],custo);
-                raiz.insereNo(leitura[1],leitura[0],custo);
-                    leitura = leitor.transferirLeitura();
-            }
-            raiz.getCidadesLargura(largura,"F");
-            raiz.getCidadesProfundidade(profundidade,"F");
-           System.out.println(extraiResultado(largura));
-           System.out.println(extraiResultado(profundidade));
-   }
-
-   public static String extraiResultado(ArrayList<Resultado> lista){
-     String ret = new String();
-     int custo = 0;
-     for(int i = 0; i < lista.size(); i++){
-     custo = custo + lista.get(i).getCusto();
-     ret += lista.get(i).getCidade()+" "+custo+" ";
-     }
-     return ret;
-   }
+        }
+        leitura = leitor.transferirLeitura();
+        String destino = leitura[0];
+        raiz.getCidadesLargura(calculo1,largura, destino);
+        raiz.getCidadesProfundidade(calculo2,profundidade, destino);
+        raiz.AbrirLargura(abertura,destino);
+        raiz.getCidadeUniforme(calculo3,uniforme,destino);
+        System.out.println("Abertura em largura:");
+        for(String s : abertura)
+            System.out.print(s+"-");
+        System.out.println("");
+        System.out.println("Caminho em Largura:");
+        for(String s: largura)
+            System.out.print(s+"-");
+        System.out.println("");
+        System.out.println("profundidade:");
+        for(String s: profundidade)
+            System.out.print(s+"-");
+        System.out.println("");
+        for(String s : uniforme)
+            System.out.print(s+"-");
+        System.out.println("");
+    }
 }
-
 
 
 
