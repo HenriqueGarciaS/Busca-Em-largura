@@ -49,6 +49,9 @@ public class No {
         return this.custo;
     }
 
+    public int getSize(){
+        return this.conexoes.size();
+    }
 
     public String getCidades(){
         String retorno = this.cidade;
@@ -63,6 +66,27 @@ public class No {
             if(this.conexoes.get(i).getCidade().equals(destino))
                 return true;
         return false;
+    }
+
+    public int menorPosicao(){
+        if(this.conexoes.size() > 0) {
+            int posicao = 0;
+            int menorCusto = 0;
+            for (int i = 0; i < this.conexoes.size(); i++) {
+                if (menorCusto == 0) {
+                    menorCusto = this.conexoes.get(i).getCusto();
+                    posicao = i;
+                }
+                else if (menorCusto >= this.conexoes.get(i).getCusto()) {
+                    if(this.conexoes.get(i).getSize() >= this.conexoes.get(posicao).getSize()) {
+                        menorCusto = this.conexoes.get(i).getCusto();
+                        posicao = i;
+                    }
+                }
+            }
+            return posicao;
+        }
+        return -1;
     }
 
     public void AbrirLargura(ArrayList<String> largura, String destino) {
@@ -87,8 +111,6 @@ public class No {
     }
 
     public void getCidadeUniforme(int calculo,ArrayList<String> uniforme, String destino){
-        int customenor = 0;
-        int posicao = 0;
         if(!uniforme.contains(destino)){
             if(this.estaEmConexoes(destino)){
                 if(!uniforme.contains(this.cidade)){
@@ -97,32 +119,29 @@ public class No {
                 }
                 int i = 0;
                 while(!this.conexoes.get(i).getCidade().equals(destino))
-                    i++;
+                i++;
                 uniforme.add(this.conexoes.get(i).getCidade());
-                calculo = calculo + this.conexoes.get(i).getCusto();
-                System.out.println("custo uniforme: "+ calculo);
+                calculo = calculo + this.custo;
+                System.out.println("Custo uniforme: "+calculo);
             }
-            else{
-                if(!uniforme.contains(this.cidade)) {
+            else {
+                if (!uniforme.contains(this.cidade)) {
                     uniforme.add(this.cidade);
                     calculo = calculo + this.custo;
                 }
-                for(int i = 0 ; i < this.conexoes.size(); i++) {
-                    if(customenor == 0 && this.conexoes.size() > 1) {
-                        customenor = this.conexoes.get(i).getCusto();
-                        posicao++;
+                for (int i = 0; i < this.conexoes.size(); i++)
+                    if (this.conexoes.get(i).estaEmConexoes(destino)) {
+                        this.conexoes.get(i).getCidadeUniforme(calculo, uniforme, destino);
+                        break;
                     }
-                    else if(customenor > this.conexoes.get(i).getCusto() && this.conexoes.size() > 1){
-                        customenor = this.conexoes.get(i).getCusto();
-                        posicao++;
+                    if(this.menorPosicao() == -1){
+                        for(int i = 0 ; i < this.conexoes.size(); i++)
+                            this.conexoes.get(i).getCidadeUniforme(calculo,uniforme,destino);
                     }
-                }
-                if(posicao != 0)
-              this.conexoes.get(posicao).getCidadeUniforme(calculo,uniforme,destino);
-                for(int i = 0; i < this.conexoes.size(); i++)
-                    this.conexoes.get(i).getCidadeUniforme(calculo,uniforme,destino);
+                    else
+                        this.conexoes.get(this.menorPosicao()).getCidadeUniforme(calculo, uniforme, destino);
             }
-            }
+        }
         }
 
 
@@ -146,12 +165,11 @@ public class No {
                     largura.add(this.cidade);
                     calculo = calculo + this.custo;
                 }
-                for(int i = 0 ; i < this.conexoes.size(); i++){
-                    if(this.conexoes.get(i).estaEmConexoes(destino)){
-                        this.conexoes.get(i).getCidadesLargura(calculo,largura,destino);
+                for(int i = 0 ; i < this.conexoes.size(); i++)
+                    if(this.conexoes.get(i).estaEmConexoes(destino)) {
+                        this.conexoes.get(i).getCidadesLargura(calculo, largura, destino);
                         break;
                     }
-                }
                 for(int i = 0; i < this.conexoes.size(); i++)
                     this.conexoes.get(i).getCidadesLargura(calculo,largura,destino);
             }

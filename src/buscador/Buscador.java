@@ -30,7 +30,7 @@ public class Buscador {
         raiz.getCidadesProfundidade(calculo2,profundidade, destino);
         raiz.AbrirLargura(abertura,destino);
         raiz.getCidadeUniforme(calculo3,uniforme,destino);
-        System.out.println("Abertura em largura:");
+       System.out.println("Abertura em largura:");
         for(String s : abertura)
             System.out.print(s+"-");
         System.out.println("");
@@ -42,6 +42,7 @@ public class Buscador {
         for(String s: profundidade)
             System.out.print(s+"-");
         System.out.println("");
+        System.out.println("custo uniforme:");
         for(String s : uniforme)
             System.out.print(s+"-");
         System.out.println("");
