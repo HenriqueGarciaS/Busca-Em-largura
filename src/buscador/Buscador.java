@@ -24,30 +24,35 @@ public class Buscador {
             raiz.insereNo(leitura[1],leitura[0],custo);
             leitura = leitor.transferirLeitura();
         }
+        String origem = leitura[0];
         leitura = leitor.transferirLeitura();
         String destino = leitura[0];
-        raiz.getCidadesLargura(calculo1,largura, destino);
-        raiz.getCidadesProfundidade(calculo2,profundidade, destino);
-        raiz.AbrirLargura(abertura,destino);
-        raiz.getCidadeUniforme(calculo3,uniforme,destino);
-       System.out.println("Abertura em largura:");
+        raiz.buscarNesteNo(origem, largura, destino, calculo1, 1);
+        raiz.buscarNesteNo(origem, profundidade, destino, calculo2, 2);
+        raiz.buscarNesteNo(origem, uniforme, destino, calculo3, 3);
+        raiz.buscarNesteNo(origem, abertura, destino, 0, 4);
+        imprimeBuscas(largura,profundidade,uniforme,abertura);
+    }
+
+    public static void imprimeBuscas(ArrayList<String> largura, ArrayList<String> profundidade, ArrayList<String> uniforme, ArrayList<String> abertura ) {
+        System.out.println("Abertura da arvore em largura:");
         for(String s : abertura)
-            System.out.print(s+"-");
-        System.out.println("");
-        System.out.println("Caminho em Largura:");
-        for(String s: largura)
-            System.out.print(s+"-");
-        System.out.println("");
-        System.out.println("profundidade:");
-        for(String s: profundidade)
-            System.out.print(s+"-");
-        System.out.println("");
-        System.out.println("custo uniforme:");
+            System.out.print(s+"->");
+        System.out.println();
+        System.out.println("caminho de largura:");
+        for(String s : largura)
+            System.out.print(s+"->");
+        System.out.println();
+        System.out.println("caminho de profundiade:");
+        for(String s : profundidade)
+            System.out.print(s+"->");
+        System.out.println();
+        System.out.println("caminho de custo uniforme:");
         for(String s : uniforme)
-            System.out.print(s+"-");
-        System.out.println("");
+            System.out.print(s+"->");
+        System.out.println();
+
     }
 }
-
 
 

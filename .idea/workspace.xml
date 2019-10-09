@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0560ddda-817b-495e-93d4-36e87d788696" name="Default Changelist" comment="feitos as primeiras versões do metodos de busca em largura e profundidade, problema com a inclusão dos custos nas buscas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Novo Busca em largura/arvore/No.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Novo Busca em largura/arvore/No.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Novo Busca em largura/buscador/Buscador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Novo Busca em largura/buscador/Buscador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/arvore/No.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/arvore/No.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/buscador/Buscador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/buscador/Buscador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/texto.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/texto.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

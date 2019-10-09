@@ -89,7 +89,81 @@ public class No {
         return -1;
     }
 
-    public void AbrirLargura(ArrayList<String> largura, String destino) {
+    public void buscarNesteNo(String origem, ArrayList<String> lista, String destino, int calculo, int tipo) {
+        switch(tipo) {
+            case 1:{
+                if(this.cidade.equals(origem)) {
+                    this.getCidadesLargura(calculo, lista, destino);
+                }
+                else {
+                    if(this.estaEmConexoes(origem)) {
+                        int i = 0;
+                        while(!this.conexoes.get(i).getCidade().equals(origem))
+                            i++;
+                        this.conexoes.get(i).getCidadesLargura(calculo, lista, destino);
+                    }
+                    else
+                        for(int i = 0 ; i < this.conexoes.size(); i++)
+                            this.conexoes.get(i).buscarNesteNo(origem, lista, destino, calculo, tipo);
+
+                }
+            }
+            case 2:{
+                if(this.cidade.equals(origem)) {
+                    this.getCidadesProfundidade(calculo, lista, destino);
+                }
+                else {
+                    if(this.estaEmConexoes(origem)) {
+                        int i = 0;
+                        while(!this.conexoes.get(i).getCidade().equals(origem))
+                            i++;
+                        this.conexoes.get(i).getCidadesProfundidade(calculo, lista, destino);
+                    }
+                    else
+                        for(int i = 0 ; i < this.conexoes.size(); i++)
+                            this.conexoes.get(i).buscarNesteNo(origem, lista, destino, calculo, tipo);
+
+                }
+            }
+            case 3:{
+                if(this.cidade.equals(origem)) {
+                    this.getCidadeUniforme(calculo, lista, destino);
+                }
+                else {
+                    if(this.estaEmConexoes(origem)) {
+                        int i = 0;
+                        while(!this.conexoes.get(i).getCidade().equals(origem))
+                            i++;
+                        this.conexoes.get(i).getCidadeUniforme(calculo, lista, destino);
+                    }
+                    else
+                        for(int i = 0 ; i < this.conexoes.size(); i++)
+                            this.conexoes.get(i).buscarNesteNo(origem, lista, destino, calculo, tipo);
+
+                }
+            }
+            case 4:{
+                if(this.cidade.equals(origem)) {
+                    this.AbrirLargura(lista, destino);
+                }
+                else {
+                    if(this.estaEmConexoes(origem)) {
+                        int i = 0;
+                        while(!this.conexoes.get(i).getCidade().equals(origem))
+                            i++;
+                        this.conexoes.get(i).AbrirLargura(lista, destino);
+                    }
+                    else
+                        for(int i = 0 ; i < this.conexoes.size(); i++)
+                            this.conexoes.get(i).buscarNesteNo(origem, lista, destino, calculo, tipo);
+
+                }
+            }
+        }
+
+    }
+
+    private void AbrirLargura(ArrayList<String> largura, String destino) {
         if(!largura.contains(destino)) {
             if(this.estaEmConexoes(destino)){
                 if(!largura.contains(this.cidade))
@@ -110,7 +184,7 @@ public class No {
         }
     }
 
-    public void getCidadeUniforme(int calculo,ArrayList<String> uniforme, String destino){
+    private void getCidadeUniforme(int calculo,ArrayList<String> uniforme, String destino){
         if(!uniforme.contains(destino)){
             if(this.estaEmConexoes(destino)){
                 if(!uniforme.contains(this.cidade)){
@@ -119,7 +193,7 @@ public class No {
                 }
                 int i = 0;
                 while(!this.conexoes.get(i).getCidade().equals(destino))
-                i++;
+                    i++;
                 uniforme.add(this.conexoes.get(i).getCidade());
                 calculo = calculo + this.custo;
                 System.out.println("Custo uniforme: "+calculo);
@@ -134,18 +208,18 @@ public class No {
                         this.conexoes.get(i).getCidadeUniforme(calculo, uniforme, destino);
                         break;
                     }
-                    if(this.menorPosicao() == -1){
-                        for(int i = 0 ; i < this.conexoes.size(); i++)
-                            this.conexoes.get(i).getCidadeUniforme(calculo,uniforme,destino);
-                    }
-                    else
-                        this.conexoes.get(this.menorPosicao()).getCidadeUniforme(calculo, uniforme, destino);
+                if(this.menorPosicao() == -1){
+                    for(int i = 0 ; i < this.conexoes.size(); i++)
+                        this.conexoes.get(i).getCidadeUniforme(calculo,uniforme,destino);
+                }
+                else
+                    this.conexoes.get(this.menorPosicao()).getCidadeUniforme(calculo, uniforme, destino);
             }
         }
-        }
+    }
 
 
-    public void getCidadesLargura(int calculo, ArrayList<String> largura, String destino)
+    private void getCidadesLargura(int calculo, ArrayList<String> largura, String destino)
     {
         if(!largura.contains(destino)){
             if(this.estaEmConexoes(destino)){
@@ -176,7 +250,7 @@ public class No {
         }
     }
 
-    public void getCidadesProfundidade(int calculo, ArrayList<String> profundidade, String destino) {
+    private void getCidadesProfundidade(int calculo, ArrayList<String> profundidade, String destino) {
         if(!profundidade.contains(destino)) {
             if(this.estaEmConexoes(destino)){
                 profundidade.add(this.cidade);
